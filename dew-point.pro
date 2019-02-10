@@ -15,11 +15,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    mdl/port.cpp \
+    residents/mdl/port.cpp \
     angels/arduino.cpp \
-    angels/singletonconnect.cpp \
     space/qmlspace.cpp \
-    angels/mysql.cpp
+    residents/mdl/chart.cpp \
+    angels/archangel.cpp \
+    angels/broadcast.cpp \
+    residents/mysql.cpp \
+    angels/monitor.cpp
 
 RESOURCES += qml.qrc
 
@@ -35,9 +38,12 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    mdl/port.h \
+    residents/mdl/port.h \
     angels/arduino.h \
-    angels/singletonconnect.h \
     space/qmlspace.h \
-    angels/mysql.h
+    residents/mdl/chart.h \
+    angels/archangel.h \
+    angels/broadcast.h \
+    residents/mysql.h \
+    angels/monitor.h
 DESTDIR = ../bin

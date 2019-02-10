@@ -5,7 +5,6 @@
 #include <QtSql/QSqlQuery>
 #include <QDir>
 #include <QDateTime>
-
 MySql::MySql() : QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE")){
     QSqlDatabase db;
     baseInitString();
@@ -61,20 +60,21 @@ void MySql::getTable()
        listResult.append(q.value(0).toDouble());
     }
 
-}
+ }
 
-void MySql::baseToWork()
-{
-    this->setDatabaseName(bInit.patchToBase);
-    this->setUserName(bInit.user);
-    this->setPassword(bInit.password);
+
+ void MySql::baseToWork()
+ {
+     this->setDatabaseName(baseInitStruct.patchToBase);
+     this->setUserName(baseInitStruct.user);
+     this->setPassword(baseInitStruct.password);
     dbIsOpen = this->open();
     qDebug()<<this->lastError()<<dbIsOpen<<this->tables();
 }
 
 void MySql::baseInitString()
 {
-        bInit.patchToBase ="..//..//db//lite//dewpoint.sqlite";
-        bInit.user = "user";
-        bInit.password = "root";
+        baseInitStruct.patchToBase ="..//..//db//lite//dewpoint.sqlite";
+        baseInitStruct.user = "user";
+        baseInitStruct.password = "root";
 }

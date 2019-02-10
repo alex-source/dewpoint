@@ -5,21 +5,19 @@
 class MySql : public QSqlDatabase
 {
 public:
-    MySql();
-
     void appendValue(QString name,double val);
     void getTable();
     void getColumn(QString columnName, QList<double> &listResult);
 
-
 private:
+    MySql();
     void baseInitString();
     void baseToWork();
     struct baseInitString{
             QString patchToBase;
             QString user;
             QString password;
-    } bInit;
+    } baseInitStruct;
     bool dbIsOpen = false;
 };
 
