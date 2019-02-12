@@ -15,10 +15,10 @@ int main(int argc, char *argv[])
 
         Arduino arduino;
 
-        QmlSpace space;
-        QObject::connect(&arduino,&Arduino::output,[&space](QString idName,QString value){
-                emit space.toQml(idName, value);
-        });
+//        QmlSpace space;
+//        QObject::connect(&arduino,&Arduino::output,[&space](QString idName,QString value){
+//                emit space.toQml(idName, value);
+//        });
 //        QObject::connect(&arduino,&Arduino::output,[](QString idName,QString value){
 //                MySql::getInstance()->appendValue(idName,value.toDouble());
 //        });

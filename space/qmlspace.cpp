@@ -4,8 +4,6 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 #include <QObject>
-#include "residents/mdl/chart.h"
-#include "angels/arduino.h"
 #include <QDebug>
 QmlSpace::QmlSpace(QObject *parent) : QQmlApplicationEngine(parent)
 {

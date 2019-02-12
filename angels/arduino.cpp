@@ -11,10 +11,11 @@ Arduino::Arduino(QObject *parent)
     name = "";
     arduino = this;
     connect(arduino,&QSerialPort::readyRead,this,&Arduino::update);
-    run();
+    work();
+    update();
 }
 
-void Arduino::run()
+void Arduino::work()
 {
     portList();
     portConformity();
@@ -74,7 +75,7 @@ void Arduino::update()
     QStringList l;
     l = frame.split("-");
     if(l.size() == 2)
-        //qDebug()<<">>"<<l.first();
-        emit output("temp",l.first());
+        qDebug()<<">>"<<l.first();
+//        emit output("temp",l.first());
     frame = l.last();
 }

@@ -19,7 +19,7 @@ private:
     QString frame;
 
 
-    void run();
+    void work();
 
     void portList();
     void portConformity();
