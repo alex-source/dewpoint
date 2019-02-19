@@ -15,7 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    residents/mdl/port.cpp \
+    residents/port.cpp \
     angels/arduino.cpp \
     space/qmlspace.cpp \
     residents/mdl/chart.cpp \
@@ -38,7 +38,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    residents/mdl/port.h \
+    residents/port.h \
     angels/arduino.h \
     space/qmlspace.h \
     residents/mdl/chart.h \

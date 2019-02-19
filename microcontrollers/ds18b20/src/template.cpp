@@ -3,25 +3,31 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include "Arduino.h"
-// сигнальный провод подключен к 2 пину на Arduino
+int incomingByte = 0;
 #define ONE_WIRE_BUS 4
 
-// настроим библиотеку 1-Wire для связи с датчиком
 OneWire oneWire(ONE_WIRE_BUS);
 
-// создадим объект для работы с библиотекой DallasTemperature
 DallasTemperature sensors(&oneWire);
 
 void setup(){
-  Serial.begin(9600);
-  sensors.begin();
+    Serial.begin(9600);
+    pinMode(LED_BUILTIN, OUTPUT);
+    sensors.begin();
 }
 
 void loop(){
-//  // отправляем запрос на измерение температуры
-  sensors.requestTemperatures();
-//  // покажем температуру в мониторе Serial порта
-  Serial.print(sensors.getTempCByIndex(0));
-  Serial.print("-");
-  delay(1200);
+    sensors.requestTemperatures();
+      Serial.print(sensors.getTempCByIndex(0));
+      Serial.print("-");
+
+    delay(2000);
+    incomingByte = Serial.read();
+    if(incomingByte<0){
+        digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+    }
+    else {
+        digitalWrite(LED_BUILTIN, LOW);   // turn the LED on (HIGH is the voltage level)
+    }
+
 }

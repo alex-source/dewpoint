@@ -21,6 +21,7 @@ private:
     Monitor(Monitor const&) = delete;
     Monitor& operator = (Monitor const&) = delete;
 signals:
+    void error(QString id);
 
 
 public slots:

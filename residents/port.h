@@ -2,17 +2,13 @@
 #define PORT_H
 
 #include <QObject>
-#include <QVariant>
-#include <QRandomGenerator>
-class Port : public QObject
+#include <QSerialPort>
+class Port : public QSerialPort
 {
     Q_OBJECT
 public:
     explicit Port(QObject *parent = nullptr);
-
-    Q_INVOKABLE QVariant getDataByName(QString name);
 private:
-    QRandomGenerator generator;
 signals:
 
 public slots:

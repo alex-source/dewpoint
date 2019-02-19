@@ -1,8 +1,8 @@
 #include <QDebug>
 #include <QSerialPortInfo>
-#include <QTimer>
-
 #include "arduino.h"
+#include "angels/monitor.h"
+//#include <QProcess>
 
 Arduino::Arduino(QObject *parent)
 {
@@ -12,7 +12,6 @@ Arduino::Arduino(QObject *parent)
     arduino = this;
     connect(arduino,&QSerialPort::readyRead,this,&Arduino::update);
     work();
-    update();
 }
 
 void Arduino::work()
@@ -57,7 +56,7 @@ void Arduino::portSetup()
     if(isAvailable){
         // open and configure the serialport
         arduino->setPortName(name);
-        arduino->open(QSerialPort::ReadOnly);
+        arduino->open(QSerialPort::ReadWrite);
         arduino->setBaudRate(QSerialPort::Baud9600);
         arduino->setDataBits(QSerialPort::Data8);
         arduino->setParity(QSerialPort::NoParity);
@@ -65,6 +64,7 @@ void Arduino::portSetup()
         arduino->setFlowControl(QSerialPort::NoFlowControl);
     }else{
         // give error message if not available
+        Monitor::getInstance().error("qwe");
         qDebug()<<"Couldn't find the Arduino!";
     }
 }
@@ -78,4 +78,11 @@ void Arduino::update()
         qDebug()<<">>"<<l.first();
 //        emit output("temp",l.first());
     frame = l.last();
+QString buffer;
+buffer = "10010";
+//   qDebug()<<arduino->write( buffer.toStdString().c_str(), buffer.size() );
+   arduino->write( QByteArray(1,1));
+qDebug()<<frame;
 }
+//sudo chmod a+rw /dev/ttyACM0
+//  381  avrdude -c arduino -p m328p -P /dev/ttyACM0 -b 115200 -U flash:w:template.hex:i
